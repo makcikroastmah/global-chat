@@ -14,7 +14,7 @@ var app = new Vue({
         .orderBy('date','asc')
         .onSnapshot(messagesCollection => {
             
-            messagesCollection.forEach(messageItem => {
+            messagesCollection.forEach(messagesItem => {
                 this.messages.push(messagesItem.data());
             })
         })
