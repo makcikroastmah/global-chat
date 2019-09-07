@@ -20,11 +20,12 @@
                 </div>
                 </section>
 
-        <section class='section'>
+        <section class='section' v-if= "username === '' ">
           <div class="container">
             <div class="field">
               <label class="label">Username</label>
               <div class="control">
+                v-model= "username"
                 <input class="input" type="text" placeholder="Enter your desired username">
               </div>
             </div>
@@ -32,7 +33,7 @@
 
         </section>
                 
-                <section class="section">
+                <section class="section" v-else>
                 <div class="container">
                     <div class="box main-chat-window">
             

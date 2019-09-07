@@ -8,6 +8,7 @@ var app = new Vue({
         }
       ],
       newMessage: "",
+      username: "",
     },
     created:function(){
         db.collection("messages")
