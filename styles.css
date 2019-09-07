@@ -1,13 +1,16 @@
 #subject {
  text-align: center;
+ 
 }
 
 body {
-    background-color: rgb(198, 248, 243);
-    height: 100vh;
+    background-color: hsl(0, 0%, 21%);
+    min-height: 100vh;
+    color: hsl(0, 0%, 96%);
 }
 
 .main-chat-window {
     height: 350px ;
     overflow: auto;
+   
 }

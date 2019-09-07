@@ -8,23 +8,31 @@ var app = new Vue({
         }
       ],
       newMessage: "",
+      unsavedUsername: "",
       username: "",
     },
     created:function(){
         db.collection("messages")
         .orderBy('date','asc')
         .onSnapshot(messagesCollection => {
-            
+            this.messages=[]
             messagesCollection.forEach(messagesItem => {
                 this.messages.push(messagesItem.data());
             })
         })
     },
     methods: {
+        logout: function(){
+            this.username=''
+        },
+        saveUsername: function(){
+            this.username = this.unsavedUsername;
+        },
         enterNewMessage: function(){
             const newMessage = {
                 message: this.newMessage,
                 date: new Date(),
+                username: this.username,
             }
            this.messages.push(newMessage);
            this.addToFirestore(newMessage);

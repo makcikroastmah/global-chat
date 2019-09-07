@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Global Chat</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-   
-  </head>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Global Chat</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+</head>
 
 
-  <body>
-    <div id="app">
-        <section class="section">
-                <div id="subject">
-                    <h1 class="title">Global Chat</h1>
-                    <p class="subtitle">  Because talking to strangers is a <strong>good</strong> idea! </p>
-                </div>
-                </section>
+<body>
+  <div id="app" class="has-text-white">
+    <section class="section">
+      <div id="subject">
+        <h1 class="title has-text-white">Global Chat</h1>
+        <p class="subtitle has-text-white"> Because talking to strangers is a <strong class="has-text-white">good</strong> idea! </p>
+      </div>
+      <br>
+      <div v-if="!username">
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
 
-        <section class='section' v-if= "username === '' ">
-          <div class="container">
-            <div class="field">
-              <label class="label">Username</label>
-              <div class="control">
-                v-model= "username"
-                <input class="input" type="text" placeholder="Enter your desired username">
-              </div>
-            </div>
+            <input v-on:keyup.enter="saveUsername" v-model="unsavedUsername" class="input" type="text"
+              placeholder="Enter your desired username">
           </div>
-        </section>
-                
-        <section class="section" v-else>
-          <div class="container">
-              <div class="box main-chat-window">
-      
-                  <div class="notification is-primary" v-for="messageObject in messages">
-                          {{messageObject.message}}
-                  </div>
-                      
-              </div>
-              </div>
-          </section>
-      
-          <section class="section">
-              <div class="container">
-                  <div class="field">
-                      <div class="control">
-                          <input 
-                              v-model="newMessage"
-                              v-on:keyup.enter="enterNewMessage"
-                              class="input is-primary is-large" type="text" placeholder="Enter your message">
-                      </div>
-                  </div>
-              </div>
-          </section>
+        </div>
+      </div>
+
+    <div v-else>
+
+          <div class="box main-chat-window">
+
+            <div
+              v-bind:class="{'is-light': messageObject.username === username, 'is-dark': messageObject.username !== username}"
+              class="notification" v-for="messageObject in messages">
+              <strong>
+                {{messageObject.username}}:
+              </strong>
+              {{messageObject.message}}
+            </div>
+
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <p class="subtitle has-text-white">
+                you are sending messages as <strong class="has-text-white">{{username}}</strong>
+              </p>
+              <input v-model="newMessage" v-on:keyup.enter="enterNewMessage" class="input is-primary is-large"
+                type="text" placeholder="Enter your message">
+            </div>
+            <br>
+            <button class="button is-text is-white" v-on:click="logout">
+              Reset Session
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
-<script src="firebase-config.js" ></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.4.0/firebase-firestore.js"></script>
+  <script src="firebase-config.js"></script>
   <script src="main.js"></script>
-  </body>
+</body>
 
 
 </html>
