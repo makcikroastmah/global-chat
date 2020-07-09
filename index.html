@@ -47,16 +47,16 @@
           </div>
 
           <div class="field">
-            <div class="control">
+            <div class="control" id="inputusername">
               <p class="subtitle has-text-white">
                 you are sending messages as <strong class="has-text-white">{{username}}</strong>
               </p>
-              <input v-model="newMessage" v-on:keyup.enter="enterNewMessage" class="input is-primary is-large"
+              <input v-model="newMessage" v-on:keyup.enter="enterNewMessage" class="input is-medium"
                 type="text" placeholder="Enter your message">
             </div>
             <br>
-            <button class="button is-text is-white" v-on:click="logout">
-              Reset Session
+            <button class="button is-white" v-on:click="logout">
+              Reset
             </button>
           </div>
         </div>
