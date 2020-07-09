@@ -5,6 +5,8 @@
 
 body {
     background-color: hsl(0, 0%, 21%);
+    background-image: url("IMG_8264.jpg");
+    background-size: 1450px;
     min-height: 100vh;
     color: hsl(0, 0%, 96%);
 }
